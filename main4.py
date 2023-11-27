@@ -2,15 +2,36 @@ import requests
 import pandas as pd
 import json
 import streamlit as st
+from streamlit_lottie import st_lottie
  
 placeholder = st.empty()
+def get(path:str):
+  with open(path,"r") as p:
+    return json.load(p)
+  
+path=get("Animation - 1701105630153.json")
+st_lottie(path)
 
-st.title("WEATHER UPDATE")
+
+
+
+st.success("WEATHER UPDATE")
+
+def get(path:str):
+  with open(path,"r") as p:
+    return json.load(p)
+  
+path=get("Animation - 1701104404073.json")
+st_lottie(path)
+
 
 # Do a API call to get wether data and return response
 def get_weather(city):
   global placeholder
   placeholder.text('Loading Data......')
+  
+   
+
   API_key = "ca988591e83474e52a2e43afb8aaf70d"
   url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_key}"
   response = requests.get(url)
@@ -29,7 +50,12 @@ def printWeather(response):
       humidity = data['main']['humidity']
       pressure = data['main']['pressure']
       icon = data['weather'][0]['icon']
+      #feels_like = data['main']['feels_like']
+      #visibility = data['visibility']
+      #speed = data['wind']['speed']
+
      # map = fl.folium.Map(location=(data['coord']['lat'],data['coord']['lon']), zoom_start=13)
+
       df = pd.DataFrame(
       [[data['coord']['lat'],data['coord']['lon']]],    
       columns=['lat', 'lon']
@@ -41,8 +67,19 @@ def printWeather(response):
 
       #print the weather forecast
       # st.write(data)
+     
+
+      
       st.success(f"Weather in {city} : {weather_description}")
       st.info(f"Temperature : {temperature}C")
+      st.warning(f"Humidity :{humidity}%")
+      st.snow(f"Pressure: {pressure}mbar")
+      #st.info(f"Feels_like:{feels_like}C")
+      #st.warning(f"Visibility:{visibility}km")
+      #st.info(f"wind_speed:{speed}km/h")
+
+
+
       web_str = "https://openweathermap.org/img/wn/"+icon+"@2x.png"
       left_co, cent_co, right_co = st.columns(3)
       with cent_co:
@@ -63,13 +100,15 @@ def handleError(error, type):
     print(error)
     st.write(f'Something went wrong! Please try again. {error}')
 
-st.header("Check the current weather")
+st.warning("Check the current weather")
 
 
 
 
-st.image("https://images.ctfassets.net/hrltx12pl8hq/6TIZLa1AKeBel0yVO7ReIn/1fc0e2fd9fcc6d66b3cc733aa2547e11/weather-images.jpg?fit=fill&w=600&h=400",width=690)
+
 city = st.text_input("Enter City Name :")
 if st.button("Get Weather"):
   response = get_weather(city)
   printWeather(response)
+
+  

@@ -7,6 +7,7 @@ import api
 import dataProcessor
 import chart
 import globals
+from streamlit_lottie import st_lottie
 
 back_img =f"""
    <style>
@@ -22,8 +23,16 @@ st.markdown(
    back_img,
    unsafe_allow_html=True)
 
+st.success("WEATHER UPDATE")
 st.title("Check the current weather")
-st.image("https://i.postimg.cc/44S1ywbQ/tanjiro-kamado-monochrome-kimetsu-no-yaiba-thumb.jpg")
+
+def get(path:str):
+  with open(path,"r") as p:
+    return json.load(p)
+  
+path=get("Animation - 1701104404073.json")
+st_lottie(path)
+
 st.markdown(
     """
     <style>
