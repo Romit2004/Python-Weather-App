@@ -6,9 +6,8 @@ import datetime as dt
 import api
 import dataProcessor
 import chart
-lat =""
-lon=""
-placeholder = st.empty()
+import globals
+
 back_img =f"""
    <style>
     body {{
@@ -39,14 +38,14 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-city = st.text_input("**Enter City Name :**")
-if st.button("Get Weather") or city != '':
-  response = api.get_weather(city)
+globals.city = st.text_input("**Enter City Name :**")
+if st.button("Get Weather") or globals.city != '':
+  response = api.get_weather(globals.city, globals.placeholder)
   dataProcessor.printWeather(response)
-
-if city != '':
+  
+if globals.city != '':
   selected_chart_type = st.selectbox('Select Chart Type', ( 'Line Chart', 'Bar Chart', 'Pie Chart', 'Scatter Plot'),
                                       index=0)
   duration = st.selectbox('Select days',('-7','-6','-5','-4','-3','-2', '-1','1', '2','3','4','5','6','7'),
                           index=3)
-  chart.plot_chart(selected_chart_type,duration)
+  chart.plot_chart(selected_chart_type,duration,globals.lat,globals.lon)

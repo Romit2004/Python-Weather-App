@@ -4,7 +4,7 @@ import json
 import streamlit as st
 import datetime as dt
 import utils
-import main3
+import globals
 
 def printWeather(response):
   try:
@@ -14,8 +14,8 @@ def printWeather(response):
       #Extract relevant weather information
       print(data)
       # print(data['coord']['lat'])
-      main3.lat = data['coord']['lat']
-      main3.lon = data['coord']['lon']
+      globals.lat = data['coord']['lat']
+      globals.lon = data['coord']['lon']
       weather_description = data['weather'][0]['main']
       temperature = data['main']['temp']
       humidity = data['main']['humidity']
@@ -36,7 +36,7 @@ def printWeather(response):
       # st.write(data)
       col1, col2, col3 = st.columns(3)
       with col1:
-        st.success(f"Weather in {main3.city} : {weather_description}")
+        st.success(f"Weather in {globals.city} : {weather_description}")
         st.info(f"Pressure : {pressure}mbar" )
       with col2:
         st.info(f"Temperature : {temperature}C")
@@ -67,4 +67,4 @@ def printWeather(response):
       utils.handleError(data,'httpError')
   except:
     utils.handleError(response, 'parseError')
-  main3.placeholder.empty()
+  globals.placeholder.empty()
