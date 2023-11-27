@@ -26,6 +26,7 @@ st.markdown(
 st.title("WEATHER UPDATE")
 st.success("Check the current weather")
 
+
 def get(path:str):
   with open(path,"r") as p:
     return json.load(p)
