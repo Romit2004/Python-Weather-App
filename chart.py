@@ -28,13 +28,6 @@ def plot_chart(selected_chart_type,duration,lat,lon):
             "Temperature": hr_forcast['hourly']['temperature_2m']
         }
       )
-
-      
-     # st.bar_chart(chart_data, x="Time", y="Temperature")
-#       selected_chart_type = st.selectbox('Select Chart Type', ('Select Chart Type2', 'Line Chart', 'Bar Chart', 'Pie Chart', 'Scatter Plot'),
-#        index=None,
-#        placeholder= "Choose...."                                  
-#        )
       print(selected_chart_type)
 
       if selected_chart_type == 'Line Chart':
@@ -48,7 +41,7 @@ def plot_chart(selected_chart_type,duration,lat,lon):
     
       elif selected_chart_type == 'Scatter Plot':
 
-        st.bar_chart(chart_data, x="Time", y="Temperature")
+        st.scatter_chart(chart_data, x="Time", y="Temperature")
       else:
         st.line_chart(chart_data, x="Time", y="Temperature")
 
