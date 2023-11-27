@@ -23,8 +23,8 @@ st.markdown(
    back_img,
    unsafe_allow_html=True)
 
-st.success("WEATHER UPDATE")
-st.title("Check the current weather")
+st.title("WEATHER UPDATE")
+st.success("Check the current weather")
 
 def get(path:str):
   with open(path,"r") as p:
