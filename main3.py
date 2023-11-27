@@ -44,8 +44,8 @@ if st.button("Get Weather") or globals.city != '':
   dataProcessor.printWeather(response)
   
 if globals.city != '':
-  selected_chart_type = st.selectbox('Select Chart Type', ( 'Line Chart', 'Bar Chart', 'Pie Chart', 'Scatter Plot'),
+  selected_chart_type = st.selectbox('Select Chart Type', ( 'Line Chart', 'Bar Chart', 'Scatter Plot'),
                                       index=0)
   duration = st.selectbox('Select days',('-7','-6','-5','-4','-3','-2', '-1','1', '2','3','4','5','6','7'),
-                          index=3)
+                          index=7)
   chart.plot_chart(selected_chart_type,duration,globals.lat,globals.lon)
