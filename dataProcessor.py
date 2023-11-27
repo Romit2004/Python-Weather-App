@@ -5,10 +5,16 @@ import streamlit as st
 import datetime as dt
 import utils
 import globals
+from streamlit_lottie import st_lottie
+
+
+
+  
 
 def printWeather(response):
   try:
     data = json.loads(response.text)
+    
 
     if data['cod'] == 200:
       #Extract relevant weather information
@@ -21,6 +27,12 @@ def printWeather(response):
       humidity = data['main']['humidity']
       pressure = data['main']['pressure']
       icon = data['weather'][0]['icon']
+      feels_like = data['main']['feels_like']
+      visibility = data['visibility']
+      speed = data['wind']['speed']
+      temp_min = data['main']['temp']
+      temp_max = data['main']['temp']
+      
      # map = fl.folium.Map(location=(data['coord']['lat'],data['coord']['lon']), zoom_start=13)
       df = pd.DataFrame(
       [[data['coord']['lat'],data['coord']['lon']]],    
@@ -38,10 +50,17 @@ def printWeather(response):
       with col1:
         st.success(f"Weather in {globals.city} : {weather_description}")
         st.info(f"Pressure : {pressure}mbar" )
+        st.success(f"Visibility:{visibility}km")
       with col2:
         st.info(f"Temperature : {temperature}C")
+        st.success(f"Feels_like:{feels_like}C")
+        st.info(f"Min Temperature: {temp_min}C")
       with col3:
         st.success(f"Humidity : {humidity}%")
+        st.info(f"wind_speed:{speed}km/h")
+        st.success(f"Max Temperature:{temp_max}C")
+     
+        
         
 
 
