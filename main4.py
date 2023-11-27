@@ -50,16 +50,18 @@ def printWeather(response):
       humidity = data['main']['humidity']
       pressure = data['main']['pressure']
       icon = data['weather'][0]['icon']
-      #feels_like = data['main']['feels_like']
-      #visibility = data['visibility']
-      #speed = data['wind']['speed']
+      feels_like = data['main']['feels_like']
+      visibility = data['visibility']
+      speed = data['wind']['speed']
+      print(feels_like,visibility,speed)
+
 
      # map = fl.folium.Map(location=(data['coord']['lat'],data['coord']['lon']), zoom_start=13)
 
-      df = pd.DataFrame(
-      [[data['coord']['lat'],data['coord']['lon']]],    
-      columns=['lat', 'lon']
-      )
+      # df = pd.DataFrame(
+      # [[data['coord']['lat'],data['coord']['lon']]],    
+      # columns=['lat', 'lon']
+      # )
 
 
       # Convert temperature from kelvin to celsius
@@ -73,18 +75,18 @@ def printWeather(response):
       st.success(f"Weather in {city} : {weather_description}")
       st.info(f"Temperature : {temperature}C")
       st.warning(f"Humidity :{humidity}%")
-      st.snow(f"Pressure: {pressure}mbar")
-      #st.info(f"Feels_like:{feels_like}C")
-      #st.warning(f"Visibility:{visibility}km")
-      #st.info(f"wind_speed:{speed}km/h")
+      #st.snow(f"Pressure: {pressure}mbar")
+      st.info(f"Feels_like:{feels_like}C")
+      st.warning(f"Visibility:{visibility}km")
+      st.info(f"wind_speed:{speed}km/h")
 
 
 
-      web_str = "https://openweathermap.org/img/wn/"+icon+"@2x.png"
+      web_str = f"https://openweathermap.org/img/wn/{icon}@2x.png"
       left_co, cent_co, right_co = st.columns(3)
       with cent_co:
         st.image(web_str)
-      st.map(df)
+      #st.map(df)
       
     else:
       handleError(data,'httpError')
