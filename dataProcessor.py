@@ -33,7 +33,7 @@ def printWeather(response):
       temp_min = data['main']['temp']
       temp_max = data['main']['temp']
       
-     # map = fl.folium.Map(location=(data['coord']['lat'],data['coord']['lon']), zoom_start=13)
+     
       df = pd.DataFrame(
       [[data['coord']['lat'],data['coord']['lon']]],    
       columns=['lat', 'lon']
@@ -74,13 +74,7 @@ def printWeather(response):
       with cent_co:
         st.image(web_str)
       st.map(df)
-     # plot_chart(lat,lon)
-      #with st.container():
-        # selected_chart_type = st.selectbox('Select Chart Type', ('Select Chart Type2', 'Line Chart', 'Bar Chart', 'Pie Chart', 'Scatter Plot'),
-        # index=None,
-        # placeholder= "Choose...."                                  
-        # ) 
-        # plot_chart(lat,lon,selected_chart_type)
+  
       
     else:
       utils.handleError(data,'httpError')
