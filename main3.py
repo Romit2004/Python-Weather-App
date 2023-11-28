@@ -52,9 +52,11 @@ st.markdown(
 globals.city = st.text_input("**Enter City Name :**")
 if st.button("Get Weather") or globals.city != '':
   response = api.get_weather(globals.city, globals.placeholder)
+  globals.get_city=""
+  
   dataProcessor.printWeather(response)
   
-if globals.city != '':
+if globals.city != '' and globals.get_city!="error":
   selected_chart_type = st.selectbox('Select Chart Type', ( 'Line Chart', 'Bar Chart', 'Scatter Plot'),
                                       index=0)
   duration = st.selectbox('Select days',('-7','-6','-5','-4','-3','-2', '-1','1', '2','3','4','5','6','7'),

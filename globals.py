@@ -3,3 +3,4 @@ lat =""
 lon=""
 placeholder = st.empty()
 city  = ""
+get_city = ""
