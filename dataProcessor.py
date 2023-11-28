@@ -44,6 +44,7 @@ def printWeather(response):
       temp_min = round(temp_min - 273.15, 2)
       temp_max = round(temp_max - 273.15, 2)
       feels_like = round(feels_like-273.15,2)
+      visibility = round(visibility/1000,2)
 
       #print the weather forecast
       # st.write(data)
