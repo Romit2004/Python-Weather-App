@@ -23,8 +23,9 @@ st.markdown(
    back_img,
    unsafe_allow_html=True)
 
-st.title("WEATHER UPDATE")
-st.success("Check the current weather")
+#st.title("WeatherPy")
+st.markdown("<h1 style='text-align: center; color: White;font-family: Arial;'>WeatherPy</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; background-color:blue;'>Check the current weather</h2>",unsafe_allow_html=True)
 
 
 def get(path:str):
