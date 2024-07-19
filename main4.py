@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import streamlit as st
 from streamlit_lottie import st_lottie
+import os
  
 placeholder = st.empty()
 def get(path:str):
@@ -32,7 +33,7 @@ def get_weather(city):
   
    
 
-  API_key = "ca988591e83474e52a2e43afb8aaf70d"
+  API_key = os.getenv("API")
   url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_key}"
   response = requests.get(url)
   return response
